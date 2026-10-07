@@ -1,0 +1,67 @@
+:root {
+  --bg: #080d16;
+  --panel: #121b2a;
+  --panel-alt: #192738;
+  --primary: #8b5cf6;
+  --secondary: #22d3ee;
+  --text: #ecf7ff;
+  --muted: #a7b8cc;
+  --success: #34d399;
+  --danger: #f87171;
+}
+
+html, body {
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg), #111827 55%, #0f172a);
+}
+
+[data-testid="stAppViewContainer"] {
+  background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(34, 211, 238, 0.12), transparent 32%);
+}
+
+[data-testid="stHeader"] {
+  background: rgba(8, 13, 22, 0.75);
+}
+
+[data-testid="stForm"] {
+  background: rgba(18, 27, 42, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+.stSelectbox > div > div, .stTextInput > div > div, .stFileUploader > div > div {
+  border-radius: 12px;
+}
+
+button[kind="primary"] {
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  border: none;
+  border-radius: 12px;
+}
+
+button[kind="primary"]:hover {
+  filter: brightness(1.08);
+}
+
+[data-testid="stDownloadButton"] button {
+  border-radius: 12px;
+}
+
+.stCode {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 12px;
+}
+
+section[data-testid="stSidebar"] {
+  background: rgba(12, 18, 29, 0.95);
+}
+
+@media (max-width: 768px) {
+  .stApp {
+    padding-bottom: 2rem;
+  }
+}

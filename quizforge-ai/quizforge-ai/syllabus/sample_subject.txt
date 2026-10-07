@@ -1,0 +1,13 @@
+Introduction to Data Science
+
+Data science combines statistics, programming, and domain knowledge to analyze information.
+
+A data pipeline is the process of collecting, cleaning, transforming, and storing data.
+
+A dataset is a collection of observations or records used for analysis.
+
+A model is a mathematical representation used to make predictions or explain patterns.
+
+Data quality includes accuracy, completeness, consistency, and relevance.
+
+Ethical data use includes protecting privacy, avoiding bias, and using data responsibly.
