@@ -1,0 +1,339 @@
+Act as a senior GenAI architect and Python developer.
+
+I want to build a complete end-to-end AI Banking Assistant using:
+
+- Python
+- Streamlit
+- LangChain
+- ChromaDB
+- Ollama API
+- Gemma model
+- python-dotenv
+- RAG (Retrieval-Augmented Generation)
+
+PROJECT GOAL
+
+Banks receive thousands of customer questions daily:
+
+- What documents are required for a home loan?
+- What is the interest rate for a personal loan?
+- Am I eligible for a loan?
+- How can I block my debit card?
+- What happens if I miss an EMI?
+- What is the minimum balance?
+
+Instead of hardcoding answers, create an AI Banking Assistant that answers using bank documents through RAG.
+
+ARCHITECTURE
+
+Customer
+    ↓
+Streamlit UI
+    ↓
+LangChain
+    ↓
+Retriever
+    ↓
+ChromaDB Vector Database
+    ↓
+Bank Documents
+    ↓
+Gemma (via Ollama API)
+    ↓
+Answer + Sources
+
+PROJECT ROADMAP
+
+Phase 1:
+Create banking documents
+
+Phase 2:
+Load documents
+
+Phase 3:
+Chunk documents
+
+Phase 4:
+Create embeddings
+
+Phase 5:
+Store embeddings in ChromaDB
+
+Phase 6:
+Retrieve relevant chunks
+
+Phase 7:
+Connect Gemma through Ollama API
+
+Phase 8:
+Generate responses
+
+Phase 9:
+Add source citations
+
+Phase 10:
+Add chat memory
+
+Phase 11:
+Add tools and agents
+
+==================================================
+PROJECT STRUCTURE
+==================================================
+
+banking-assistant/
+│
+├── .venv/
+│
+├── .env
+├── .env.example
+├── .gitignore
+│
+├── app.py
+├── ingest.py
+├── requirements.txt
+├── README.md
+│
+├── documents/
+│   ├── home_loan.txt
+│   ├── personal_loan.txt
+│   ├── credit_card.txt
+│   ├── debit_card_policy.txt
+│   ├── banking_faq.txt
+│   └── interest_rates.txt
+│
+├── vectordb/
+│
+├── src/
+│   ├── config.py
+│   ├── prompts.py
+│   ├── retriever.py
+│   ├── rag_chain.py
+│   └── memory.py
+│
+├── tools/
+│   ├── emi_calculator.py
+│   ├── loan_eligibility.py
+│   └── interest_lookup.py
+│
+└── tests/
+
+==================================================
+BANK DOCUMENTS
+==================================================
+
+home_loan.txt
+
+Contains:
+- Home loan eligibility
+- Documents required
+- Interest rates
+- Maximum loan amount
+- Maximum tenure
+- Processing fees
+
+personal_loan.txt
+
+Contains:
+- Eligibility
+- Required documents
+- Salary requirements
+- Interest rates
+- Loan amount
+- Tenure
+
+credit_card.txt
+
+Contains:
+- Credit card eligibility
+- Credit limits
+- Late payment fee
+- Reward points
+- Minimum due
+
+debit_card_policy.txt
+
+Contains:
+- Lost card process
+- Daily withdrawal limit
+- Replacement fees
+- Customer support contact
+
+banking_faq.txt
+
+Contains:
+- EMI explanation
+- Missed EMI penalties
+- Minimum balance
+- Password reset
+- Mobile number update
+
+interest_rates.txt
+
+Contains:
+- Home loan rate
+- Personal loan rate
+- Car loan rate
+- Savings account rate
+- Fixed deposit rate
+
+==================================================
+ENVIRONMENT VARIABLES
+==================================================
+
+.env
+
+OLLAMA_API_KEY=
+OLLAMA_API_URL=https://ollama.com/api/chat
+OLLAMA_MODEL=gemma3:12b
+REQUEST_TIMEOUT=120
+
+.env.example
+
+OLLAMA_API_KEY=your_ollama_api_key_here
+OLLAMA_API_URL=https://ollama.com/api/chat
+OLLAMA_MODEL=gemma3:12b
+REQUEST_TIMEOUT=120
+
+==================================================
+GITIGNORE
+==================================================
+
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+==================================================
+REQUIREMENTS
+==================================================
+
+streamlit
+langchain
+langchain-community
+chromadb
+sentence-transformers
+python-dotenv
+requests
+pypdf
+
+==================================================
+INGEST.PY RESPONSIBILITIES
+==================================================
+
+1. Load all .txt files from documents/
+2. Read content
+3. Split documents using RecursiveCharacterTextSplitter
+4. Create embeddings
+5. Store vectors in ChromaDB
+6. Save database in vectordb/
+7. Print indexing statistics
+
+==================================================
+APP.PY RESPONSIBILITIES
+==================================================
+
+1. Create Streamlit interface
+2. Accept user questions
+3. Connect to ChromaDB
+4. Retrieve top 3 relevant chunks
+5. Pass context to Gemma via Ollama API
+6. Generate final response
+7. Display answer
+8. Display source document names
+9. Display chat history
+
+==================================================
+PROMPT TEMPLATE
+==================================================
+
+You are a banking customer support assistant.
+
+Answer only using the provided banking documents.
+
+If the answer is not available in the supplied context, respond exactly:
+
+"I don't have enough information in the bank documents to answer this question."
+
+Context:
+{context}
+
+Question:
+{question}
+
+==================================================
+TEST QUESTIONS
+==================================================
+
+What documents are required for a home loan?
+
+What is the interest rate for a personal loan?
+
+How can I block my debit card?
+
+What happens if I miss an EMI?
+
+What is the minimum balance?
+
+Explain EMI.
+
+==================================================
+ADVANCED FEATURES
+==================================================
+
+Level 1:
+Basic RAG Chatbot
+
+Level 2:
+Conversation Memory
+
+Level 3:
+Source Citations
+
+Level 4:
+EMI Calculator Tool
+
+Level 5:
+Loan Eligibility Tool
+
+Level 6:
+LangChain Agent
+
+Agent Architecture:
+
+                  Banking Agent
+                        │
+             ┌──────────┼──────────┐
+             │          │          │
+             ▼          ▼          ▼
+        EMI Tool   Eligibility   RAG Tool
+
+Example:
+
+User:
+Calculate EMI for ₹10 lakh at 9% for 5 years.
+
+Agent:
+Uses EMI Tool.
+
+User:
+What documents do I need for a home loan?
+
+Agent:
+Uses RAG Tool.
+
+==================================================
+EXPECTED OUTCOME
+==================================================
+
+A production-ready AI Banking Assistant capable of:
+
+- Question Answering
+- Retrieval-Augmented Generation
+- Source Citations
+- Chat Memory
+- Banking Tools
+- Streamlit UI
+- ChromaDB Integration
+- LangChain Integration
+- Ollama API Integration
